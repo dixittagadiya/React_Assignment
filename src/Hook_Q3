@@ -1,0 +1,18 @@
+=> What is useReducer?
+- It works similarly to a Redux-like reducer pattern.
+- It takes two main arguments:
+ 1. A reducer function, which specifies how the state should be updated based on a given action.
+ 2. An initial state, which sets the starting value for the state.
+- It returns an array with two values:
+ 1. The current state.
+ 2. A dispatch function to trigger state updates.
+
+=> When to Use useReducer
+- When you have complex state logic with multiple sub-values.
+- When the next state depends on the previous state.
+- When you want a more predictable state update pattern.
+
+=> Benefits
+- Organized state logic: Makes it easier to manage complex state updates.
+- Predictability: Reducer functions are pure and deterministic.
+- Testability: Reducers can be tested independently from the component.

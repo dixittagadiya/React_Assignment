@@ -1,0 +1,78 @@
+=> Key Features of Hooks
+1. State Management: useState enables state management in functional components.
+2. Side Effects: useEffect allows you to perform side effects such as fetching data, subscribing to events, or manually changing the DOM.
+3. Rules: Hooks can only be called at the top level of a functional component or within custom hooks. They cannot be used in loops, conditions, or nested functions.
+
+=> useState()
+The useState hook is used to manage state in functional components.
+  const [state, setState] = useState(initialValue);
+
+- state: The current state value.
+- setState: A function to update the state.
+- initialValue: The initial value of the state.
+
+import React, { useState } from "react";
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+
+=> How it works:
+
+1. useState(0) initializes the count state with 0.
+2. Clicking "Increment" calls setCount(count + 1), updating the state to the next value.
+3. React re-renders the component with the updated count.
+
+=> useEffect()
+The useEffect hook allows you to perform side effects in your components, like fetching data, updating the DOM, or setting up subscriptions.
+
+useEffect(() => {
+  // Side effect logic
+  return () => {
+    // Cleanup logic (optional)
+  };
+}, [dependencyArray]);
+
+
+- Callback Function: Contains the side effect logic.
+- Cleanup Function (optional): Used to clean up effects like unsubscribing from listeners.
+- Dependency Array (optional):
+   - Empty ([]): Effect runs only once (on mount).
+   - Specific dependencies: Effect runs when dependencies change.
+   - Omitted: Effect runs after every render.
+
+=> Example of useEffect:
+import React, { useState, useEffect } from "react";
+
+const Timer = () => {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
+
+    // Cleanup function to clear the interval
+    return () => clearInterval(interval);
+  }, []); // Empty array: runs once when the component mounts
+
+  return <p>Elapsed Time: {seconds} seconds</p>;
+};
+
+export default Timer;
+
+=> How it works:
+
+1. Initialization: useEffect starts a timer (setInterval) when the component mounts.
+2. Cleanup: The cleanup function clears the timer when the component unmounts.
+3. Dependency Array: Since the dependency array is empty ([]), the effect runs only once.

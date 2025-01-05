@@ -1,0 +1,28 @@
+=> What are Keys in React?
+In React, keys are special attributes that help identify elements in a list. Keys are essential for React to efficiently manage and update the DOM when rendering lists of components.
+
+=> Why are Keys Important?
+1. Tracking Element Identity:
+
+- React uses keys to determine which items in a list have changed, been added, or been removed.
+- This allows React to optimize rendering by reordering or updating only the necessary elements, rather than re-rendering the entire list.
+
+2. Improved Performance:
+
+- Using unique keys ensures React can efficiently "diff" the virtual DOM and apply minimal changes to the actual DOM.
+
+=> What Happens if You Do Not Provide a Unique Key?
+1. React's Default Behavior:
+
+- If you don’t provide keys, React will fall back to using the array index as the default key.
+- For example:
+const items = ["apple", "banana", "cherry"];
+items.map((item, index) => <li key={index}>{item}</li>);
+
+2. Problems with Using Index or Non-Unique Keys:
+
+- React may fail to correctly identify which items have been added, removed, or changed.
+- This can lead to:
+   - Incorrect Component State: Stateful components may retain incorrect state after reordering.
+   - Unnecessary Re-Renders: React may re-render or update more elements than necessary, reducing performance.
+   - UI Bugs: Animations or dynamic updates might behave unexpectedly.
